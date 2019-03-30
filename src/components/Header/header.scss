@@ -7,9 +7,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // border-bottom: 1px solid $white;
   background: map-get($pallete, primary );
-  // background: $black;
   position: relative;
   z-index: 10;
 
