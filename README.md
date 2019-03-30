@@ -1,7 +1,12 @@
-## Instruções
+# Marvel Favorite Heroes
 
+## Pré-requisitos
 - Instalar [NodeJS](https://nodejs.org/en/).
+
+
+## Instruções
 - Criar uma conta e gerar uma chave de [API da Marvel](https://developer.marvel.com/docs#)
+- Adicionar `localhost` na lista de domínios permitidos nas [configurações da API da Marvel](https://developer.marvel.com/account) [neste local](http://prntscr.com/n56e2j).
 - Adicionar a public key e private key no arquivo no arquivo `.sample.env` e renomear o mesmo para `.env`.
 
 ```
