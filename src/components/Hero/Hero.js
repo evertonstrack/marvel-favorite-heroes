@@ -29,6 +29,7 @@ export const Hero = ({
         </div>
       </div>
       <div className="warpper">
+        <h3 className="hero__comics">First comics</h3>
         <div className="hero__stories stories">
           { stories && stories.map(story =>  <Story key={story.id} {...story} /> ) }
         </div>

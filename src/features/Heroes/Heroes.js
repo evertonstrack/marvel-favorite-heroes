@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MarvelAPI } from '../../services/MarvelAPI';
 import { Hero } from '../../components/Hero';
+import { scrollIt } from '../../utils/Scroll';
 import './heroes.scss';
 
 
@@ -79,6 +80,13 @@ class Heroes extends Component {
         });
   }
 
+  
+  scrollDown() {
+
+    const target = document.querySelector('.heroes');
+    scrollIt(target);
+  }
+
   render() {
 
     const { heroes, isLoading } = this.state
@@ -89,9 +97,11 @@ class Heroes extends Component {
         <header className="heroes-title">
           <h2 className="animated fadeInDown fast">
             <span className="small ">Hi! My name is Everton and these are </span>
-            <span>My Favorite Heroes</span>
+            <span>My top 3 Super Heroes</span>
           </h2>
+          <span className="arrow-down" onClick={this.scrollDown}></span>
         </header>
+
         <div className="heroes">
           { isLoading 
             ? <Loading />

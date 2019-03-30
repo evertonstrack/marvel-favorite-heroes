@@ -7,17 +7,41 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  position: relative;
+
+  &:before{
+    position: absolute;
+    left: 2%;
+    top: 2%;
+    letter-spacing: -10px;
+    font-size: 150px;
+    font-weight: bold;
+    opacity: 0.5;
+    line-height: 100%;
+  }
 
   &:nth-child(1){
     background-color: $captain;
     color: #FFF;
+
+    &:before{
+      content: "1st";
+    }
   }
   &:nth-child(2){
     background-color: $spider;
-    color: #FFF
+    color: #FFF;
+
+    &:before{
+      content: "2nd";
+    }
   }
   &:nth-child(3){
     background-color: $wolverine;
+
+    &:before{
+      content: "3rd";
+    }
 
     .hero__infos{
       .hero__infos-link{
@@ -71,14 +95,36 @@
       }
     }
   }
+
+  .hero__comics{
+    font-size: 28px;
+    margin: 50px 0 0;
+  }
 }
 
+
+@media (max-width: 1440px) {
+  .hero{
+
+    &:before{
+      left: auto;
+      right: 2%;
+      font-size: 100px;
+    }
+  }
+}
 
 
 @media (max-width: 998px) {
 
   .hero{
     padding: 50px 0;
+
+    &:before{
+      position: static;
+      margin-bottom: 40px;
+    }
+
     .hero-container{
       flex-direction: column;
 
