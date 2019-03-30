@@ -30,7 +30,7 @@ export const Hero = ({
       </div>
       <div className="warpper">
         <div className="hero__stories stories">
-          { stories.map(story =>  <Story key={story.id} {...story} /> ) }
+          { stories && stories.map(story =>  <Story key={story.id} {...story} /> ) }
         </div>
       </div>
     </article>

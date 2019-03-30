@@ -20,20 +20,6 @@ export class MarvelAPI {
     };
   }
 
-  transformResponse(response) {
-
-    console.log('API HERO', response);
-
-    return {
-      id: response.id,
-      name: response.name,
-      description: response.description,
-      image: `${response.thumbnail.path}.${response.thumbnail.extension}`,
-      urlWiki: response.urls[1].url,
-      stories: []
-    }
-  }
-
   getAuthenticationParams(ts) {
 
     return {
@@ -63,7 +49,7 @@ export class MarvelAPI {
 
     const hero = await fetch(url, this.params)
                         .then(res => res.json())
-                        .then(res => this.transformResponse(res.data.results[0]));
+                        .then(res => this.transformHeroResponse(res.data.results[0]));
     return hero;
   }
 
@@ -83,5 +69,17 @@ export class MarvelAPI {
     return fetch(url, this.params)
       .then(res => res.json())
       .catch(err => console.log(err));
+  }
+
+  transformHeroResponse(response) {
+
+    return {
+      id: response.id,
+      name: response.name,
+      description: response.description,
+      image: `${response.thumbnail.path}.${response.thumbnail.extension}`,
+      urlWiki: response.urls[1].url,
+      stories: []
+    }
   }
 }

@@ -3,6 +3,14 @@ import { MarvelAPI } from '../../services/MarvelAPI';
 import { Hero } from '../../components/Hero';
 import './heroes.scss';
 
+
+const Loading = () => (
+  <div className="heroes-loading">
+    <h3>Searching for Heroes.. </h3>
+    <span className="heroes-loading__loader"></span>
+  </div>
+);
+
 class Heroes extends Component {
 
   constructor(props) {
@@ -85,10 +93,7 @@ class Heroes extends Component {
 
         <div className="heroes">
           { isLoading 
-            ? <div className="heroes-loading">
-                <h3>Searching for Heroes.. </h3>
-                <span className="heroes-loading__loader"></span>
-              </div>
+            ? <Loading />
             : Object.values(heroes).map(hero => <Hero key={hero.id} {...hero} /> )
           }
         </div>
