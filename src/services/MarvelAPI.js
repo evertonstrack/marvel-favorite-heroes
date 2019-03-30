@@ -4,7 +4,7 @@ export class MarvelAPI {
 
   constructor() {
 
-    this.API_URL = 'http://gateway.marvel.com/v1/public/';
+    this.API_URL = 'https://gateway.marvel.com/v1/public/';
     this.PUBLIC_KEY = `${process.env.REACT_APP_PUBLIC_KEY}`;
     this.PRIVATE_KEY = `${process.env.REACT_APP_PRIVATE_KEY}`;
   }
