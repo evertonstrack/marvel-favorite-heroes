@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
 import { MarvelAPI } from '../../services/MarvelAPI';
-import { Hero } from '../../components/Hero';
+import { HeroesTemplate } from './Heroes.template';
 import { scrollIt } from '../../utils/Scroll';
-import './heroes.scss';
 
 
-const Loading = () => (
-  <div className="heroes-loading">
-    <h3>Searching for Heroes.. </h3>
-    <span className="heroes-loading__loader"></span>
-  </div>
-);
-
-class Heroes extends Component {
+export class HeroesController extends Component {
 
   constructor(props) {
     super(props);
@@ -63,21 +55,22 @@ class Heroes extends Component {
 
   loadHeroStories(heroId) {
 
-    this.service.getSotriesByHero(heroId)
-        .then(res => {
-          this.setState(prevState => ({
-            heroes: {
-              ...prevState.heroes,
-              [heroId]: {
-                ...prevState.heroes[heroId],
-                stories: res.data.results
-              }
+    this.service.getStoriesByHero(heroId)
+      .then(res => {
+
+        this.setState(prevState => ({
+          heroes: {
+            ...prevState.heroes,
+            [heroId]: {
+              ...prevState.heroes[heroId],
+              stories: res.data ? res.data.results : []
             }
-          }), () => {
-            // Save data to local storage
-            localStorage.setItem('heroes', JSON.stringify(this.state.heroes));
-          });
+          }
+        }), () => {
+          // Save data to local storage
+          localStorage.setItem('heroes', JSON.stringify(this.state.heroes));
         });
+      });
   }
 
   
@@ -89,28 +82,8 @@ class Heroes extends Component {
 
   render() {
 
-    const { heroes, isLoading } = this.state
-
     return (
-
-      <section className="content">
-        <header className="heroes-title">
-          <h2 className="animated fadeInDown fast">
-            <span className="small ">Hi! My name is Everton and these are </span>
-            <span>My top 3 Super Heroes</span>
-          </h2>
-          <span className="arrow-down" onClick={this.scrollDown}></span>
-        </header>
-
-        <div className="heroes">
-          { isLoading 
-            ? <Loading />
-            : Object.values(heroes).map(hero => <Hero key={hero.id} {...hero} /> )
-          }
-        </div>
-      </section>
+      <HeroesTemplate onClick={this.scrollDown} {...this.state} />
     );
   }
 }
-
-export { Heroes };

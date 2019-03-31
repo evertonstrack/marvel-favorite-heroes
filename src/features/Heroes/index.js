@@ -1,3 +1,3 @@
-import { Heroes } from './Heroes';
+import { HeroesController } from './Heroes.controller';
 
-export { Heroes };
+export { HeroesController };

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Heroes } from './Heroes';
+import { HeroesController } from './Heroes.controller';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<Heroes />, div);
+  ReactDOM.render(<HeroesController />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

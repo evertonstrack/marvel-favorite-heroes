@@ -20,10 +20,11 @@ export class MarvelAPI {
     };
   }
 
-  getAuthenticationParams(ts) {
+  getAuthenticationParams() {
 
+    const ts = new Date().getTime();
     return {
-      ts: ts,
+      ts,
       apikey: this.PUBLIC_KEY,
       hash: this.getHash(ts)
     }
@@ -35,13 +36,12 @@ export class MarvelAPI {
     return hash;
   }
 
-  async getHeroByName(heroName) {
+  async getHeroByName(name) {
 
     const url = new URL(`${this.API_URL}characters`);
-    const ts = new Date().getTime();
     const query = {
-      name: heroName,
-      ...this.getAuthenticationParams(ts)
+      name,
+      ...this.getAuthenticationParams()
     }
 
     Object.keys(query).forEach(key => 
@@ -53,14 +53,13 @@ export class MarvelAPI {
     return hero;
   }
 
-  getSotriesByHero(heroId) {
+  getStoriesByHero(heroId, limit = 5, orderBy = 'modified') {
 
     const url = new URL(`${this.API_URL}characters/${heroId}/comics`);
-    const ts = new Date().getTime();
     const query = {
-      limit: 5,
-      orderBy: 'modified',
-      ...this.getAuthenticationParams(ts)
+      limit,
+      orderBy,
+      ...this.getAuthenticationParams()
     }
 
     Object.keys(query).forEach(key => 
@@ -73,13 +72,13 @@ export class MarvelAPI {
 
   transformHeroResponse(response) {
 
-    return {
+    return response ? {
       id: response.id,
       name: response.name,
       description: response.description,
       image: `${response.thumbnail.path}.${response.thumbnail.extension}`,
       urlWiki: response.urls[1].url,
       stories: []
-    }
+    } : {};
   }
 }
