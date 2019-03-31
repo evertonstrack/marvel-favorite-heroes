@@ -70,7 +70,7 @@
   border-bottom: 12px solid #FFF;
 }
 
-@-webkit-keyframes arrow-down {
+@keyframes arrow-down {
   0% {
     transform: translateY(0) translateX(50%) rotate(-45deg);
   }
@@ -85,24 +85,10 @@
   }
 }
 
-
-@-webkit-keyframes spiner {
-  0%   { transform: rotate(0); }
-  100% { transform: rotate(360deg); }
-}
-@-moz-keyframes spiner {
-  0%   { transform: rotate(0); }
-  100% { transform: rotate(360deg); }
-}
-@-o-keyframes spiner {
-  0%   { transform: rotate(0); }
-  100% { transform: rotate(360deg); }
-}
 @keyframes spiner {
   0%   { transform: rotate(0); }
   100% { transform: rotate(360deg); }
 }
-
 
 @media (max-width: 998px) {
 
