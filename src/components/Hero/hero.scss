@@ -8,6 +8,7 @@
   align-items: center;
   flex-direction: column;
   position: relative;
+  background-color: map-get($pallete, 'gray' );
 
   &:before{
     position: absolute;
@@ -20,34 +21,46 @@
     line-height: 100%;
   }
 
-  &:nth-child(1){
+  &[data-hero="captain america"]{
     background-color: $captain;
     color: #FFF;
-
-    &:before{
-      content: "1st";
-    }
   }
-  &:nth-child(2){
+  &[data-hero="spider-man"]{
     background-color: $spider;
     color: #FFF;
-
-    &:before{
-      content: "2nd";
-    }
   }
-  &:nth-child(3){
+  &[data-hero="wolverine"]{
     background-color: $wolverine;
-
-    &:before{
-      content: "3rd";
-    }
 
     .hero__infos{
       .hero__infos-link{
         color: #000;
       }
     }
+  }
+
+  &:nth-child(1){
+
+    &:before{
+      content: "1st";
+    }
+  }
+  &:nth-child(2){
+
+    &:before{
+      content: "2nd";
+    }
+  }
+  &:nth-child(3){
+
+    &:before{
+      content: "3rd";
+    }
+  }
+
+  .hero__not-found{
+    font-size: 50px;
+    color: #FFF;
   }
 
   .hero-container{

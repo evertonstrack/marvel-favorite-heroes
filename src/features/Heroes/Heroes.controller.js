@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { MarvelAPI } from '../../services/MarvelAPI';
 import { HeroesTemplate } from './Heroes.template';
 import { scrollIt } from '../../utils/Scroll';
-
+import { Error } from '../../components/Error';
 
 export class HeroesController extends Component {
 
@@ -17,17 +17,18 @@ export class HeroesController extends Component {
 
     this.state = {
       heroes: heroes,
-      isLoading: !heroes ? true : false
+      isLoading: !heroes ? true : false,
+      hasError: false
     }
   }
 
   componentDidMount() {
     
-    if( !this.state.heroes ) {
+    if( !this.state.heroes || this.state.hasError ) {
 
       this.getHeroes()
         .then(heroes => {
-
+          
           this.setState(prevState => ({
             heroes,
             isLoading: false
@@ -36,7 +37,8 @@ export class HeroesController extends Component {
               this.loadHeroStories(hero.id)
             });
           })
-        });
+        })
+        .catch(err => this.setState({ hasError: true }));
     }
   }
 
@@ -70,7 +72,8 @@ export class HeroesController extends Component {
           // Save data to local storage
           localStorage.setItem('heroes', JSON.stringify(this.state.heroes));
         });
-      });
+      })
+      .catch(err => this.setState({ hasError: true }));
   }
 
   
@@ -83,7 +86,9 @@ export class HeroesController extends Component {
   render() {
 
     return (
-      <HeroesTemplate onClick={this.scrollDown} {...this.state} />
+      <Error hasError={this.state.hasError}>
+        <HeroesTemplate onClick={this.scrollDown} {...this.state} />
+      </Error>
     );
   }
 }

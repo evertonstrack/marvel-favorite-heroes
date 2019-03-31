@@ -9,6 +9,14 @@ export class MarvelAPI {
     this.PRIVATE_KEY = `${process.env.REACT_APP_PRIVATE_KEY}`;
   }
 
+  handleErrors(res) {
+
+    if( !res.ok ) {
+      throw res.status;
+    }
+    return res;
+  }
+
   get params() {
 
     return {
@@ -48,8 +56,10 @@ export class MarvelAPI {
       url.searchParams.append(key, query[key]));
 
     const hero = await fetch(url, this.params)
+                        .then(res => this.handleErrors(res))
                         .then(res => res.json())
                         .then(res => this.transformHeroResponse(res.data.results[0]));
+                      
     return hero;
   }
 
@@ -66,8 +76,8 @@ export class MarvelAPI {
       url.searchParams.append(key, query[key]));
 
     return fetch(url, this.params)
-      .then(res => res.json())
-      .catch(err => console.log(err));
+            .then(res => this.handleErrors(res))
+            .then(res => res.json());
   }
 
   transformHeroResponse(response) {
