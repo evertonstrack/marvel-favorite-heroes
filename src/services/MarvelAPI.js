@@ -58,17 +58,21 @@ export class MarvelAPI {
     const hero = await fetch(url, this.params)
                         .then(res => this.handleErrors(res))
                         .then(res => res.json())
+                        .then()
                         .then(res => this.transformHeroResponse(res.data.results[0]));
                       
     return hero;
   }
 
-  getStoriesByHero(heroId, limit = 5, orderBy = 'modified') {
+  getStoriesByHero(heroId, orderBy = 'onsaleDate', offset = 0, limit = 5) {
 
     const url = new URL(`${this.API_URL}characters/${heroId}/comics`);
     const query = {
+      offset,
       limit,
       orderBy,
+      format: 'comic',
+      formatType: 'comic',
       ...this.getAuthenticationParams()
     }
 

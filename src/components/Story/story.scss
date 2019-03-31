@@ -9,11 +9,11 @@
     .stories__item-image{
       display: block;
       margin: 0 0 20px 0;
-      box-shadow: 0 26px 24px -16px rgba(0,0,0,0.4);
 
       > img{
         width: 100%;
         display: block;
+        box-shadow: 0 26px 24px -16px rgba(0,0,0,0.4);
       }
     }
 
