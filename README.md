@@ -7,13 +7,14 @@
 ## Instruções
 - Criar uma conta e gerar uma chave de [API da Marvel](https://developer.marvel.com/docs#)
 - Adicionar `localhost` na lista de domínios permitidos nas [configurações da API da Marvel](https://developer.marvel.com/account) [neste local](http://prntscr.com/n56e2j).
-- Adicionar a public key e private key no arquivo no arquivo `.sample.env` e renomear o mesmo para `.env`.
+- Adicionar a public key e private key (geradas no passo anterior) no arquivo `.sample.env`, como no exemplo abaixo:
 
 ```
 REACT_APP_PUBLIC_KEY=PUBLIC_KEY_HERE
 REACT_APP_PRIVATE_KEY=PRIVATE_KEY_HERE
 ```
 
+- Renomear o arquivo `.sample.env` para `.env`.
 - Rodar o comando `npm install` para instalar as dependências.
 
 
