@@ -36,4 +36,3 @@ No diretório do projeto, rodar o comando `npm run build`, para gerar o build do
 
 - ReactJS
 - Crypto-js
-- Node Sass
