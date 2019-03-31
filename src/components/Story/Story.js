@@ -2,7 +2,7 @@ import React from 'react';
 import './story.scss';
 
 const hasImage = (url) => {
-  return !url.includes('image_not_available')
+  return !url.includes('image_not_available');
 }
 
 export const Story = ({

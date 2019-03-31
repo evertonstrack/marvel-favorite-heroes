@@ -3,7 +3,6 @@ import { Story } from '../Story';
 import './hero.scss';
 
 export const Hero = ({
-  id,
   name,
   image,
   description,
